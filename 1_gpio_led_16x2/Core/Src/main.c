@@ -64,24 +64,20 @@ void LCD_Write_cmd(uint8_t cmd);
 void LCD_init() {
 	HAL_Delay(50);
 	
-//	LCD_Write_cmd(0x30);
-//	HAL_Delay(5);
-//	LCD_Write_cmd(0x30);
-//	HAL_Delay(1);
-//	LCD_Write_cmd(0x30);
-//	HAL_Delay(1);
-	
-	LCD_Write_cmd(0x38);
-	
+	LCD_Write_cmd(0x30);
 	HAL_Delay(5);
-	LCD_Write_cmd(0x0C);
+	LCD_Write_cmd(0x30);
+	HAL_Delay(1);
+	LCD_Write_cmd(0x30);
+	HAL_Delay(1);
 	
+	LCD_Write_cmd(0x38); // Function Set
+	HAL_Delay(5);
+	LCD_Write_cmd(0x0C); // Make cusor invisible
 	HAL_Delay(5);
 	LCD_Write_cmd(0x01);	// clear screen
-	
 	HAL_Delay(5);
 	LCD_Write_cmd(0x06);	// entry mode
-	
 	HAL_Delay(5);
 }
 
@@ -105,8 +101,6 @@ void LCD_Write_Byte(const uint8_t*  data, uint8_t mode) {
 	HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, ((*data) & 0x40) ? 1 : 0);
 	HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, ((*data) & 0x80) ? 1 : 0);
 	
-	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, 0);
-	HAL_Delay(1);
 	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, 1);
 	HAL_Delay(1);
 	HAL_GPIO_WritePin(LCD_E_GPIO_Port, LCD_E_Pin, 0);

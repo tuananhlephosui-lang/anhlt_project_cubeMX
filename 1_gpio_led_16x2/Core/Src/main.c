@@ -60,6 +60,8 @@ void LCD_init();
 void LCD_Write_Byte(const uint8_t* data, uint8_t mode);
 void LCD_Write_data(uint8_t data);
 void LCD_Write_cmd(uint8_t cmd);
+void LCD_Print(char *str);
+void LCD_SetCursor(uint8_t row, uint8_t col);
 
 void LCD_init() {
 	HAL_Delay(50);
@@ -115,7 +117,21 @@ void LCD_Write_cmd(uint8_t cmd) {
 	LCD_Write_Byte(&cmd, 0x00);
 }
 
+void LCD_Print(char *str) {
+	while(*str) {
+		LCD_Write_data(*str++);
+	}
+}
 
+void LCD_SetCursor(uint8_t row, uint8_t col) {
+    uint8_t address;
+    if (row == 0) {
+			address = 0x80 + col;        // dong 1: dia chi 0x00 + col (them bit 1 ? DB7 -> 0x80)
+    } else {
+        address = 0xC0 + col;        // dong 2: dia chi 0x40 + col (0x80 + 0x40 = 0xC0)
+    }
+    LCD_Write_cmd(address);
+}
 
 /* USER CODE END 0 */
 
@@ -151,7 +167,12 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_GPIO_WritePin(LCD_RW_GPIO_Port, LCD_RW_Pin, 0);
 	LCD_init();
-	LCD_Write_data('A');
+	// LCD_Write_data('A');
+	LCD_Print("Em Huong");
+	LCD_SetCursor(1, 0);
+	LCD_Print("ngan hang");
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */

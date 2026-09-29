@@ -1,0 +1,21 @@
+--cpu Cortex-M3
+"arm2\startup_stm32f103xb.o"
+"arm2\main.o"
+"arm2\stm32f1xx_it.o"
+"arm2\stm32f1xx_hal_msp.o"
+"arm2\stm32f1xx_hal_gpio_ex.o"
+"arm2\stm32f1xx_hal.o"
+"arm2\stm32f1xx_hal_rcc.o"
+"arm2\stm32f1xx_hal_rcc_ex.o"
+"arm2\stm32f1xx_hal_gpio.o"
+"arm2\stm32f1xx_hal_dma.o"
+"arm2\stm32f1xx_hal_cortex.o"
+"arm2\stm32f1xx_hal_pwr.o"
+"arm2\stm32f1xx_hal_flash.o"
+"arm2\stm32f1xx_hal_flash_ex.o"
+"arm2\stm32f1xx_hal_exti.o"
+"arm2\system_stm32f1xx.o"
+--strict --scatter "arm2\arm2.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "arm2.map" -o arm2\arm2.axf

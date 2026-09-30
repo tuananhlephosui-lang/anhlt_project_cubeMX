@@ -7,3 +7,6 @@ Release/
 *.hex
 *.build_log.htm
 *.dep
+*.axf
+*.htm
+*.map

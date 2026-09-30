@@ -84,6 +84,8 @@ void LCD_init() {
 }
 
 void LCD_Write_Byte(const uint8_t*  data, uint8_t mode) {
+	HAL_GPIO_WritePin(LCD_RW_GPIO_Port, LCD_RW_Pin, 0); // write mode
+	
 	if(mode == 0x01){
 		// data
 		HAL_GPIO_WritePin(LCD_RS_GPIO_Port, LCD_RS_Pin, 1);
@@ -165,7 +167,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-	HAL_GPIO_WritePin(LCD_RW_GPIO_Port, LCD_RW_Pin, 0);
 	LCD_init();
 	// LCD_Write_data('A');
 	LCD_Print("Em Huong");

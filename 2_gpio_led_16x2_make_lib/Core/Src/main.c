@@ -102,11 +102,17 @@ int main(void)
 	};
 	
 	LCD_init(&myLcd);
-	// LCD_Write_data('A');
-	LCD_Print(&myLcd, "Em Huong");
-	LCD_SetCursor(&myLcd, 1, 0);
-	LCD_Print(&myLcd, "ngan hang");
-	
+
+// practice 1	
+// LCD_Write_data('A');
+
+// practice 2
+//	LCD_Print(&myLcd, "Em Huong");
+//	LCD_SetCursor(&myLcd, 1, 0);
+//	LCD_Print(&myLcd, "ngan hang");
+
+// practice 3
+//	LCD_ScrollText_Circular(&myLcd, "em Huong ngan hang, va anh Tuan Anh lap trinh", 300);
 	
   /* USER CODE END 2 */
 
@@ -115,7 +121,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+		LCD_ScrollText_Circular(&myLcd, "em Huong ngan hang, va anh Tuan Anh lap trinh ", 300);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

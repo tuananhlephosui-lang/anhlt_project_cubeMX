@@ -71,3 +71,32 @@ void LCD_SetCursor(const LCD_Config_t *lcd, uint8_t row, uint8_t col) {
     }
     LCD_Write_cmd(lcd, address);
 }
+
+// Ham in chuoi chay vong tron qua 2 dong LCD
+void LCD_ScrollText_Circular(const LCD_Config_t *lcd, const char *str, uint16_t delay_ms) {
+    uint16_t len = strlen(str);
+    if (len == 0) return;
+
+    // Duyet qua tung vi tri bat dau (offset) cua chuoi
+    for (uint16_t offset = 0; offset < len; offset++) {
+        
+        // 1. In 16 ky tu dau tien len DONG 1
+        LCD_SetCursor(lcd, 0, 0);
+        for (uint8_t i = 0; i < 16; i++) {
+            // Lay du % len de chuoi tu dong cuon tron ve dau
+            uint16_t char_idx = (offset + i) % len; 
+            LCD_Write_data(lcd, str[char_idx]);
+        }
+
+        // 2. In 16 ky tu tiep theo (noi tiep) len DONG 2
+        LCD_SetCursor(lcd, 1, 0);
+        for (uint8_t i = 0; i < 16; i++) {
+            // Lay noi tiep 16 ky tu phia sau dong 1
+            uint16_t char_idx = (offset + 16 + i) % len; 
+            LCD_Write_data(lcd, str[char_idx]);
+        }
+
+        // Thoi gian cho giua moi buoc dich chu
+        HAL_Delay(delay_ms);
+    }
+}

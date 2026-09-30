@@ -121,7 +121,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		LCD_ScrollText_Circular(&myLcd, "em Huong ngan hang, va anh Tuan Anh lap trinh ", 300);
+		LCD_ScrollText_Circular(&myLcd, "em Huong ngan hang, va anh Tuan Anh lap trinh ", 100);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
